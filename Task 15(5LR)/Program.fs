@@ -9,7 +9,7 @@ let NOD x y =
             else RNod x y (del-1)
     if x>y then RNod x y y
     else RNod x y x
-
+//Обход взаимнопростых компонентов числа
 let RoundPrimeNum n f init = 
     let rec PrimeNum n f init num = 
         if num = 0 then init
