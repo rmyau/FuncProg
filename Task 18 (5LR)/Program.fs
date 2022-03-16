@@ -24,8 +24,23 @@ let SumDelPrime n =
             SumDelPr n NextSum newDel
     SumDelPr n 0 n  
 
+//М2: найти кол-во нечетных цифр числа, которые > 3
+
+let NumOddCifr n = 
+    let rec NumCifr n num = 
+        if n = 0 then num
+        else 
+            let nextNum = 
+                if (n%10)%2=1 && (n%10)>3 then (num+1)
+                else num
+            let NextN = n/10
+            NumCifr NextN nextNum
+    NumCifr n 0
 [<EntryPoint>]
 let main argv =
     let res1 = SumDelPrime 6
     Console.WriteLine("Сумма простых делителей числа 6 = {0}",res1)
+
+    let res2=NumOddCifr 1234567
+    Console.WriteLine("Кол-во нечетных цифр числа, которые больше 3 для числа 1234567 = {0}",res2)
     0 // return an integer exit code
