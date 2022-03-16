@@ -19,9 +19,13 @@ let RoundPrimeNum n f init =
                 else init
             let nextNum = num-1
             PrimeNum n f nextInit nextNum
-    PrimeNum n f init n
+    PrimeNum n f init (n-1)
+//Функция Эйлера
+let Eyler n = 
+    RoundPrimeNum n (fun x y -> x+1) 0
 [<EntryPoint>]
 let main argv =
     Console.WriteLine(NOD 11 9);
     Console.WriteLine(RoundPrimeNum 6 (fun x y -> x+y) 0)
+    Console.WriteLine(Eyler 36)
     0 // return an integer exit code
