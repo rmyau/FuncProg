@@ -6,10 +6,13 @@ let Answer11 =
     Console.WriteLine("Какой у Вас любимый язык?")
     let ans=
         Console.ReadLine()
-    if (ans.Trim()="F#" || ans.Trim()="Prolog") then
-        Console.WriteLine("Подлиза!")
-    else 
-        Console.WriteLine("Интересно!")
+    match ans.Trim() with
+    |"F#"|"Prolog" -> Console.WriteLine("Подлиза!")
+    |"C++" -> Console.WriteLine("Здорово!")
+    |"Python"->Console.WriteLine("Похоже, ты не ищешь сложных путей!)")
+    |"C#" -> Console.WriteLine("А ты крутой!")
+    |"Pascal" -> Console.WriteLine("А ты интеллектуал!")
+    |_ ->Console.WriteLine("Интересно!")        
 
 [<EntryPoint>]
 let main argv =
