@@ -21,13 +21,13 @@ let lessLeftInd (lint:'int list) =
     let rec LessInd lint leftEl (indEl:int) num=
         match lint with
         |[] -> num
-        |_->
+        |head::tail->
             let newNum = 
-                if lint.Head<leftEl then num+1
+                if head<leftEl then num+1
                 else num
-            let newLeft = lint.Head
-            if lint.Head<leftEl then Console.WriteLine("Index - {0}",indEl)
-            LessInd lint.Tail newLeft (indEl+1) newNum
+            let newLeft = head
+            if head<leftEl then Console.WriteLine("Index - {0}",indEl)
+            LessInd tail newLeft (indEl+1) newNum
     LessInd lint.Tail lint.Head 1 0
 
 [<EntryPoint>]

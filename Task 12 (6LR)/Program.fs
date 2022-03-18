@@ -39,12 +39,12 @@ let NumAfterMax lint =
     let rec Num lint indMax indEl number = 
         match lint with 
         |[]-> number
-        |_ ->
+        |head::tail ->
             let newNum = 
                 if indEl>indMax then number+1
                 else number
             let newIndEl = indEl+1
-            Num lint.Tail indMax newIndEl newNum
+            Num tail indMax newIndEl newNum
     Num lint indexMax 0 0
 
 

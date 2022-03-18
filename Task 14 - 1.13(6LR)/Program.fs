@@ -38,17 +38,15 @@ let ListBeforeMin lint =
     let rec BeforeMin lint indMin indEl ListBefMin ListAfter = 
         match lint with 
         |[]-> ListAfter @ ListBefMin
-        |_ ->
+        |h::tail ->
             let newIndEl = indEl+1
             if indEl<indMin then 
-                let NewList = ListBefMin @ [lint.Head]
-                BeforeMin lint.Tail indMin newIndEl NewList ListAfter
+                let NewList = ListBefMin @ [h]
+                BeforeMin tail indMin newIndEl NewList ListAfter
             else 
                 let NewList = ListAfter @ [lint.Head]
-                BeforeMin lint.Tail indMin newIndEl ListBefMin NewList
+                BeforeMin tail indMin newIndEl ListBefMin NewList
     BeforeMin lint indexMin 0 [] []            
-           
-    BeforeMin lint indexMin 0 [] []
 [<EntryPoint>]
 let main argv =
     readData |> ListBeforeMin |>writeList

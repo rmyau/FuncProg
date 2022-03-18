@@ -22,19 +22,19 @@ let IsLocalMin Ind lint =
     let rec LocalMin lint Ind ElByInd IndEl = //ElByInd - значение в списке с заданным индексом
         match lint with
         |[]->true //если лок миним - последний элемент
-        |_->
+        |head::tail->
             let result=
                 if (IndEl+1=Ind || IndEl=Ind) then
-                    if (IndEl=Ind) then LocalMin lint.Tail Ind lint.Head (IndEl+1) 
+                    if (IndEl=Ind) then LocalMin tail Ind head (IndEl+1) 
                     else
-                        if (lint.Head>=lint.Tail.Head && IndEl+1=Ind) then LocalMin lint.Tail Ind lint.Tail.Head (IndEl+1)
+                        if (head>=tail.Head && IndEl+1=Ind) then LocalMin tail Ind tail.Head (IndEl+1)
                         else false
                 else               
-                    if (IndEl-1=Ind && lint.Head>=ElByInd) then true
+                    if (IndEl-1=Ind && head>=ElByInd) then true
                         else false
             if (IndEl>=Ind-1 && IndEl<=Ind+1) then result
             else
-                LocalMin lint.Tail Ind ElByInd (IndEl+1)
+                LocalMin tail Ind ElByInd (IndEl+1)
     LocalMin lint Ind 0 0 
 
        
