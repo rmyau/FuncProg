@@ -11,10 +11,12 @@ let main argv =
         |"Python"->"Похоже, ты не ищешь сложных путей!)"
         |"C#" -> "А ты крутой!"
         |"Pascal" -> "Сразу видно - интеллектуал!"
-        |_ ->"Интересно!" 
+        |_ ->"Интересно!"
+        
     //Суперпозиция
     Console.WriteLine("Какой у Вас любимый язык?")
     (Console.ReadLine>>Answer>>Console.WriteLine)()
+
    //Каррирование
     Console.WriteLine("Какой у Вас любимый язык?")
     let result answer func out = out(func(answer()))

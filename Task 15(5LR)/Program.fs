@@ -15,7 +15,7 @@ let RoundPrimeNum n f init =
         if num = 0 then init
         else 
             let nextInit=
-                if (NOD n num) = true then (f init num)
+                if NOD n num then (f init num)
                 else init
             let nextNum = num-1
             PrimeNum n f nextInit nextNum

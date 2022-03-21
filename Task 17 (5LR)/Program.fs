@@ -17,7 +17,7 @@ let RoundPrimeNumP n f init predicate =
         if num = 0 then init
         else 
             let nextInit=
-                if ((NOD n num) = true && (predicate num)) then (f init num)
+                if ((NOD n num) && (predicate num)) then (f init num)
                 else init
             let nextNum = num-1
             PrimeNum n f nextInit predicate nextNum
