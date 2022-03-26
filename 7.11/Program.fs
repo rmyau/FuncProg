@@ -2,16 +2,16 @@
 
 open System
 
-let rec readList n = 
-    if n=0 then []
-    else
-    let Head = System.Convert.ToInt32(System.Console.ReadLine())
-    let Tail = readList (n-1)
-    Head::Tail
+let rec readList n =
+    List.init(n) (fun index->Console.ReadLine()|>Int32.Parse)
 
 let readData = 
     let n=System.Convert.ToInt32(System.Console.ReadLine())
     readList n
+
+let rec writelist list=
+    List.iter(fun x->printfn "%O" x) list
+
 //1.1 - найти кол-во элементов, расположенных после последнего максимального
 let F list = List.length list - (List.findIndexBack (fun x-> x=(List.max list) ) list)-1 
 
