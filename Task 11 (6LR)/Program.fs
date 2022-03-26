@@ -34,7 +34,7 @@ let SumList3 f lint =
         |[]->newList
         |h::tail->
             let h2 = tail.Head
-            let h3 = tail.Tail.Head
+            let h3 = tail.Tail.Head 
             let resSum = f h h2 h3
             let NextList = newList @ [resSum]
             Sum3 tail.Tail.Tail f NextList

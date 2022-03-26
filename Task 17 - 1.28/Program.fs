@@ -21,21 +21,30 @@ let rec writeList = function
     | (head : int)::tail -> 
                        System.Console.WriteLine(head)
                        writeList tail  
-let FindMax lint = 
-    let rec MaxEl lint max =
+
+let FindMaxIndFirst lint = 
+    let rec MaxEl lint max indM indEL=
         match lint with
-        |[]->max
+        |[]->indM
         |h::tail -> 
-            let newMax =
-                if h>max then h
-                else max
-            MaxEl tail newMax
-    MaxEl lint lint.Head
+            let newMax = if h>max then h else max
+            let newInd = if h>max then indEL else indM
+            MaxEl tail newMax newInd (indEL+1)
+    MaxEl lint lint.Head 0 0 
+let FindMaxIndLast lint = 
+    let rec MaxEl lint max indM indEL=
+        match lint with
+        |[]->indM
+        |h::tail -> 
+            let newMax = if h>=max then h else max
+            let newInd = if h>=max then indEL else indM
+            MaxEl tail newMax newInd (indEL+1)
+    MaxEl lint lint.Head 0 0 
+
 //1.28 - найти элементы, расположенные между первым и последним максимальным
 let ListBetwMax lint  = 
-    let Max = FindMax lint
-    let indexFirst = List.findIndex (fun x -> x=Max) lint
-    let indexLast = List.findIndexBack (fun x -> x=Max) lint
+    let indexFirst = FindMaxIndFirst lint
+    let indexLast = FindMaxIndLast lint
     let rec InList (lint:'int list) ind1 ind2 indEl newList = 
         if indEl = ind2 then newList
         else 
@@ -47,6 +56,5 @@ let ListBetwMax lint  =
 
 [<EntryPoint>]
 let main argv =
-
     readData |> ListBetwMax|>writeList
     0 // return an integer exit code

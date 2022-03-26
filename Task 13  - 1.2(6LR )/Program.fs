@@ -16,16 +16,15 @@ let readData =
     readList n
 
 //1.2 Найти индекс минимального элемента
-let FindMin lint = 
-    let rec MinEl lint min =
+let FindMinInd lint = 
+    let rec MinEl lint min indM indEL =
         match lint with
-        |[]->min
+        |[]->indM
         |h::tail -> 
-            let newMin =
-                if h<min then h
-                else min
-            MinEl tail newMin
-    MinEl lint lint.Head
+            let newMin =if h<min then h else min
+            let newInd = if h<min then indEL else indM
+            MinEl tail newMin newInd (indEL+1)
+    MinEl lint lint.Head 0 0
 
 [<EntryPoint>]
 let main argv =

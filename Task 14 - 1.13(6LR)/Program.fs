@@ -22,19 +22,18 @@ let rec writeList = function
                        writeList tail  
 //1.13 Разместить элементы расположенные до минимального в конце массива
 //Ищем индекс последнего максимального элемента
-let FindMin lint = 
-    let rec MinEl lint min =
+let FindMaxInd lint = 
+    let rec MaxEl lint max indM indEL=
         match lint with
-        |[]->min
+        |[]->indM
         |h::tail -> 
-            let newMin =
-                if h<min then h
-                else min
-            MinEl tail newMin
-    MinEl lint lint.Head
+            let newMax = if h>=max then h else max
+            let newInd = if h>=max then indEL else indM
+            MaxEl tail newMax newInd (indEL+1)
+    MaxEl lint lint.Head 0 0 
 
 let ListBeforeMin lint = 
-    let indexMin = List.findIndexBack (fun x -> x =(FindMin lint)) lint 
+    let indexMin = FindMaxInd lint
     let rec BeforeMin lint indMin indEl ListBefMin ListAfter = 
         match lint with 
         |[]-> ListAfter @ ListBefMin

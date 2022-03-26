@@ -23,29 +23,27 @@ let rec writeList = function
 
 //1.1 Найти кол-во элементов, расположенных после последнего максимального
 //Ищем индекс последнего максимального элемента
-let FindMax lint = 
-    let rec MaxEl lint max =
+let FindMaxInd lint = 
+    let rec MaxEl lint max indM indEL=
         match lint with
-        |[]->max
+        |[]->indM
         |h::tail -> 
-            let newMax =
-                if h>max then h
-                else max
-            MaxEl tail newMax
-    MaxEl lint lint.Head
-
-let NumAfterMax lint = 
-    let indexMax = List.findIndexBack (fun x -> x =(FindMax lint)) lint 
-    let rec Num lint indMax indEl number = 
+            let newMax = if h>=max then h else max
+            let newInd = if h>=max then indEL else indM
+            MaxEl tail newMax newInd (indEL+1)
+    MaxEl lint lint.Head 0 0 
+let ListLenght lint = 
+    let rec len lint count =
         match lint with 
-        |[]-> number
-        |head::tail ->
-            let newNum = 
-                if indEl>indMax then number+1
-                else number
-            let newIndEl = indEl+1
-            Num tail indMax newIndEl newNum
-    Num lint indexMax 0 0
+        |[]->count
+        |h::tail->
+            let newCount = count+1
+            len tail newCount
+    len lint 0
+let NumAfterMax lint = 
+    let indexMax =FindMaxInd lint 
+    let result = ListLenght lint - indexMax-1
+    result
 
 
 [<EntryPoint>]
