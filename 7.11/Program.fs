@@ -5,7 +5,7 @@ open System
 let rec readList n =
     List.init(n) (fun index->Console.ReadLine()|>Int32.Parse)
 
-let readData = 
+let readData() = 
     let n=System.Convert.ToInt32(System.Console.ReadLine())
     readList n
 
@@ -17,5 +17,5 @@ let F list = List.length list - (List.findIndexBack (fun x-> x=(List.max list) )
 
 [<EntryPoint>]
 let main argv =
-   readData |> F |>Console.WriteLine;
+   readData() |> F |>Console.WriteLine;
     0 // return an integer exit code

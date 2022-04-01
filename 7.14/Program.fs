@@ -8,5 +8,5 @@ let ChetNum list = List.length (List.filter (fun x -> x%2=0) list)
 [<EntryPoint>]
 let main argv =
 
-    readData |>ChetNum|>Console.WriteLine
+    readData() |>ChetNum|>Console.WriteLine
     0 // return an integer exit code

@@ -13,4 +13,5 @@ let AverageAbsList list = List.average (List.map (fun (x:float)-> Math.Abs(x)) l
 [<EntryPoint>]
 let main argv =
     readData|>AverageAbsList |> Console.WriteLine
+
     0 // return an integer exit code

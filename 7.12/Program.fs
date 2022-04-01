@@ -11,5 +11,5 @@ let another list =
 
 [<EntryPoint>]
 let main argv =
-    Program.readData |> another|>Console.WriteLine;
+    Program.readData() |> another|>Console.WriteLine;
     0 // return an integer exit code

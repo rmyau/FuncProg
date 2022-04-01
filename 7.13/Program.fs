@@ -13,5 +13,5 @@ let ChangeList list =
 
 [<EntryPoint>]
 let main argv =
-    Program.readData |>ChangeList |> Program.writelist
+    Program.readData() |>ChangeList |> Program.writelist
     0 // return an integer exit code
