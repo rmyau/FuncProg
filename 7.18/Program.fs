@@ -1,6 +1,9 @@
 ﻿// Learn more about F# at http://fsharp.org
 
 open System
+
+//1 Создать новый массив, в котором порядок элементов
+//существующего массива будет изменен на обратный (Привет ->тевирП).
 let readArray n =
     let rec read n arr = 
         match n with 
