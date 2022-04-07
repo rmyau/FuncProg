@@ -16,6 +16,11 @@ let isPalindrom str =
                 palindrom str.[1..str.Length-2]
     palindrom newStr
 
+//18 Найти в тексте даты формата «день.месяц.год».
+//let findData str = 
+  //  let rec f str = 
+    //    let tchka = List.findIndex (String.)
+
 [<EntryPoint>]
 let main argv =
     let str = Console.ReadLine()
