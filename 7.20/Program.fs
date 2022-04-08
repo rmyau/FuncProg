@@ -20,7 +20,7 @@ let difference str =
         Convert.ToSingle(String.length(String. filter (fun x -> x='а' ||x='о'||x='э'|| x='е'||x='и'||x='ы'||x='у'||x='ё'||x='ю'||x='я') str))/ Convert.ToSingle(String.length str)
     let soglAverage = 
         Convert.ToSingle(String.length (String. filter (fun x -> not(x='а' ||x='о'||x='э'||x='е'||x='и'||x='ы'||x='у'||x='ё'||x='ю'||x='я')) str)) / Convert.ToSingle(String.length str)
-    Console.WriteLine(Math.Abs(glasAverage-soglAverage))
+    //Console.WriteLine(Math.Abs(glasAverage-soglAverage))
     Math.Abs(glasAverage-soglAverage)
 
 let sortStrByDif strList = List.sortBy (fun x->difference x) strList
@@ -45,7 +45,21 @@ let sortMedian list =
             sort newList (sortList @ [nowMed])
     sort list []
             
+let choose = function 
+    |1 -> sortStrByDif
+    |2 -> sortMedian
 [<EntryPoint>]
 let main argv =
-    Console.ReadLine()|> Convert.ToInt32 |> readListStr |> sortMedian |> writelist 
+    printfn "Введите сначала количество строк, а потом строки" 
+    let list = Console.ReadLine()|> Convert.ToInt32 |> readListStr 
+    printfn"Выберите сортировку строк:"
+    printfn"1.Сортировка по увеличения разницы между средним количеством согласных и средним количеством гласных букв в строке"
+    printfn"2.Сортировка по увеличения медианного значения выборки строк"
+    let func = Console.ReadLine() |>Convert.ToInt32 |> choose
+    printfn"Отсортированный список"
+    list |> func |>writelist
+
+    
+    
+    
     0 // return an integer exit code
