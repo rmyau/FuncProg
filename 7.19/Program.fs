@@ -17,9 +17,20 @@ let isPalindrom str =
     palindrom newStr
 
 //18 Найти в тексте даты формата «день.месяц.год».
-//let findData str = 
-  //  let rec f str = 
-    //    let tchka = List.findIndex (String.)
+let findData str = 
+    let rec date (strBase:string) (strNow: string) (strList: 'string List) = 
+        match strBase with
+        |"" -> strList
+        |_-> 
+            let newstr = 
+                if strNow.Length<10 then
+                    strNow+strBase.Remove(1 ,(strBase.Length -2)) String.
+                else (strNow.Remove 0)+ strBase[0]
+            let newList = 
+                if newstr.Length = 10 && (newstr>"00.00.0000" && newstr<"31.12.9999") then strList @ [newstr]
+                else strList
+            date (strBase.Remove 0) newstr newList
+    date str "" []
 
 [<EntryPoint>]
 let main argv =
