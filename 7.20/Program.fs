@@ -23,8 +23,29 @@ let difference str =
     Console.WriteLine(Math.Abs(glasAverage-soglAverage))
     Math.Abs(glasAverage-soglAverage)
 
-let sortStr strList = List.sortBy (fun x->difference x) strList
+let sortStrByDif strList = List.sortBy (fun x->difference x) strList
+
+//6.В порядке увеличения медианного значения выборки строк
+//(прошлое медианное значение удаляется из выборки и производится поиск
+//нового медианного значения)
+
+let findMedian list = List.item ((List.length list)/2) (List.sort list)
+
+let sortMedian list = 
+    let rec sort list sortList =
+        match list with
+        |[]->sortList
+        |_ ->
+            //Console.WriteLine("sort");
+            //writelist (List.sort list)
+            let nowMed = findMedian list
+            //Console.WriteLine("NowMed = {0}", nowMed)
+            let indMed =List.findIndex (fun x->x=nowMed) list
+            let newList = List.removeAt(indMed) list
+            sort newList (sortList @ [nowMed])
+    sort list []
+            
 [<EntryPoint>]
 let main argv =
-    Console.ReadLine()|> Convert.ToInt32 |> readListStr |> sortStr |> writelist 
+    Console.ReadLine()|> Convert.ToInt32 |> readListStr |> sortMedian |> writelist 
     0 // return an integer exit code
