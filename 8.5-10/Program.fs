@@ -61,6 +61,48 @@ type Passport (name: string, surname: string, number: int, series:int,birthday: 
 
     override this.ToString() = $"Passport name: {this.name}, surname: {this.surname}, number: {this.number}, series: {this.series}, birthday: {this.birthday}, birthPlace: {this.birthPlace}."
 
+[<AbstractClass>]
+type DocCollection() = 
+    abstract member searchDoc: Passport -> bool
+
+type PassportArray(arr: Passport array) = 
+    inherit DocCollection()
+    member this.array = arr
+    override this.searchDoc(passport) = 
+        Array.exists (fun x -> x.Equals passport) this.array
+
+type PassportList(list: Passport list) = 
+    inherit DocCollection()
+    member this.list = list
+    override this.searchDoc(passport) = 
+        List.exists (fun x -> x.Equals passport) this.list
+
+type PassportBinList(binList: Passport list ) = 
+    inherit DocCollection()
+    let rec BinSearch(list: Passport list) (p:Passport) = 
+        match List.length list with
+        | 0 -> false
+        |len -> 
+            let mid = len/2
+            let res = compare p list.[mid]
+            match res with 
+            |0 -> true
+            |1->BinSearch list.[..mid - 1] p
+            |_ -> BinSearch list.[mid + 1..] p
+
+    member this.binList = List.sortBy(fun (pas:Passport) -> (pas.number,pas.series)) List
+          
+    override this.searchDoc(passport) = 
+        BinSearch this.binList passport
+
+type PassportSet(list: Passport list) = 
+    inherit DocCollection()
+    member this.set =Set.ofList list
+    override this.searchDoc(passport) = 
+        Set.contains passport this.set
+
+
+    
 
 [<EntryPoint>]
 let main argv =
