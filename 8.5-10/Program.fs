@@ -10,6 +10,21 @@ type Passport (name: string, surname: string, number: int, series:int,birthday: 
     member this.birthday = birthday
     member this.birthPlace = birthPlace
 
+    override this.Equals(pas) = 
+        match pas with
+        | :? Passport as pas -> (pas.number) = (this.number) && (pas.series) = (this.series)
+        |_ -> false
+
+    interface IComparable with 
+        member this.CompareTo(obj: obj):int =
+            match obj with
+            | :? Passport as pas ->
+                if this.series = pas.series then 
+                    this.number.CompareTo (pas.number)
+                else this.series.CompareTo (pas.series)
+            |_->invalidArg "obj" "Differnt types of arguments"
+
+
     override this.ToString() = $"Passport name: {this.name}, surname: {this.surname}, number: {this.number}, series: {this.series}, birthday: {this.birthday}, birthPlace: {this.birthPlace}."
 
 
