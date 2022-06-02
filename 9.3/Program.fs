@@ -74,17 +74,16 @@ contextMenuStrip1.Items.Add(toolStrip4)
 label1.ContextMenuStrip <- contextMenuStrip1
 let krt _ = label1.Text <- "+"
 let _ = toolStrip1.Click.Add(krt)
-//////////////////////////////////////////////////////////////
+
 let umn _ =label1.Text <- "*"
 let _ = toolStrip3.Click.Add(umn)
-//////////////////////////////////////////////////////////////
+
 let raz _ =label1.Text <- "-"
 let _ = toolStrip2.Click.Add(raz)
-//////////////////////////////////////////////////////////////
+
 let delenie _ =label1.Text <- "/"
 let _ = toolStrip4.Click.Add(delenie)
 
-//////////////////////////////////////////////////////////////
 let ravno _ = 
     if label1.Text="/" then
         let del (a, b) (c, d) =
