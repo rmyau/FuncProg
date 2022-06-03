@@ -22,7 +22,6 @@ button.Click.AddHandler(fun _ _ ->
     let run  =  textBox2.Text<-(stringRev(textBox.Text))
     run)
 
-
 form.Controls.Add(button)
 form.Controls.Add(label)
 form.Controls.Add(textBox)
